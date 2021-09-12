@@ -29,7 +29,7 @@ function TeamGen()
 let TeamAllArray=[];
 let teamWArray=[]
 let teamBArray=[];
-let IsTeamWFirst = true;
+//let IsTeamWFirst = true;
 let IsTeamW = true;
  
  
@@ -67,16 +67,20 @@ for (let i = 0, l1 = TeamAllArray.length; i < l1; i++) {
 }//end team split
 
 //print team color
+let WRatingSum=0;
+let BRatingSum=0
 for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].type=="checkbox" &&inputs[i].checked) {
-        let row = inputs[i].parentNode.parentNode;
+        let row = inputs[i].parentNode.parentNode;		
         if(teamWArray.includes(row.cells[0].innerText))
 		 {
-		  row.cells[4].innerText ="Whihte";	
+		  row.cells[4].innerText ="白";	
+		  WRatingSum = WRatingSum +parseInt(row.cells[2].childNodes[0].value);
 		 }
 		 else
 		 {
-		   row.cells[4].innerText ="Blue";	  
+		   row.cells[4].innerText ="蓝";
+		  BRatingSum = BRatingSum +parseInt(row.cells[2].childNodes[0].value);		   
 		 }	 
        }
 	 else if(inputs[i].type=="checkbox")
@@ -85,6 +89,9 @@ for (let i = 0; i < inputs.length; i++) {
 		 row.cells[4].innerText ="";
 	   }
 }
+//print summary
+document.getElementById("WSMRY").innerText="白队: 人数："+teamWArray.length+" 分值："+WRatingSum;
+document.getElementById("BSMRY").innerText="蓝队: 人数："+teamBArray.length+" 分值："+BRatingSum;
 }
 </script>
 </head>
@@ -391,7 +398,7 @@ for (let i = 0; i < inputs.length; i++) {
     <option value="D" >Defender</option>    
   </select>
   </td>
-  <td><input type="text" value = 7></td>
+  <td><input type="text" value = 8></td>
   <td><input type="checkbox" checked ></td>
   <td></td>
   </tr> 
@@ -430,7 +437,7 @@ for (let i = 0; i < inputs.length; i++) {
     <option value="D" >Defender</option>    
   </select>
   </td>
-  <td><input type="text" value = 7></td>
+  <td><input type="text" value = 8></td>
   <td><input type="checkbox" checked ></td>
   <td></td>
   </tr>
@@ -461,7 +468,7 @@ for (let i = 0; i < inputs.length; i++) {
   <td></td>
   </tr> 
   <tr>
-    <td>Bai</td>
+    <td>小白</td>
     <td>
 	<select >
     <option value="F">Forward</option>
@@ -482,7 +489,7 @@ for (let i = 0; i < inputs.length; i++) {
     <option value="D" >Defender</option>    
   </select>
   </td>
-  <td><input type="text" value = 7></td>
+  <td><input type="text" value = 8></td>
   <td><input type="checkbox" checked ></td>
   <td></td>
   </tr> 
@@ -500,7 +507,9 @@ for (let i = 0; i < inputs.length; i++) {
   <td></td>
   </tr> 
 </table>
-<p><button onclick = "TeamGen()">Generate</button>
+<p><button onclick = "TeamGen()"><b>Generate</b></button><br>
+<b id="WSMRY"></b>
+<br><b id="BSMRY"></b><p>
 </body>
 </html>
 
