@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child() {
+  background-color: #dddddd;
+}
+th{
+background-color: #04AA6D;
+color: white;
+}
+</style>
+<script>
+function TeamGen()
+{
+
+let TeamAllArray=[];
+let teamWArray=[]
+let teamBArray=[];
+let IsTeamWFirst = true;
+let IsTeamW = true;
+ 
+ 
+let Teamtab = document.getElementById("TeamTab");
+let inputs = Teamtab.getElementsByTagName("INPUT");
+
+for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].type=="checkbox" &&inputs[i].checked) {
+        let row = inputs[i].parentNode.parentNode;
+        TeamAllArray.push([row.cells[0].innerText,row.cells[1].childNodes[1].value,row.cells[2].childNodes[0].value]);
+        }
+}
+
+
+TeamAllArray.sort( function(a, b) {
+  return b[2] - a[2] || b[1].localeCompare(a[1]);
+});
+//alert(TeamAllArray);
+for (let i = 0, l1 = TeamAllArray.length; i < l1; i++) {
+	
+	if(IsTeamW)//Whihte first
+	{
+		teamWArray.push(TeamAllArray[i][0]);
+		IsTeamW = false;
+	}
+	else
+	{
+		teamBArray.push(TeamAllArray[i][0]);
+		IsTeamW = true;
+	}
+    if(i%2 !=0)
+	{
+	 IsTeamW = !IsTeamW;
+	}
+}//end team split
+
+//print team color
+for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].type=="checkbox" &&inputs[i].checked) {
+        let row = inputs[i].parentNode.parentNode;
+        if(teamWArray.includes(row.cells[0].innerText))
+		 {
+		  row.cells[4].innerText ="Whihte";	
+		 }
+		 else
+		 {
+		   row.cells[4].innerText ="Blue";	  
+		 }	 
+       }
+	 else if(inputs[i].type=="checkbox")
+	   {
+	     let row = inputs[i].parentNode.parentNode;
+		 row.cells[4].innerText ="";
+	   }
+}
+}
+</script>
+</head>
+<body>
+<table id = "TeamTab">
+  <tr>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Rating</th>
+	 <th>Attendance</th>
+	  <th>Team Color</th>
+  </tr>
+  <tr>
+    <td>宝刀</td>
+    <td>
+	<select>
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D">Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 10></td>
+  <td><input type="checkbox" checked "></td>
+  <td></td>
+  </tr>
+   <tr>
+    <td >David</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D">Defender</option>    
+  </select>
+  </td>
+  <td><input type="text"value = 10></td>
+  <td><input type="checkbox" checked></td>
+   <td></td>
+  </tr>
+   <tr>
+    <td >王大为</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D">Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 10></td>
+  <td><input type="checkbox" checked></td>
+  <td></td>
+  </tr>
+    <tr>
+    <td>Sam</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 10></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+     <tr>
+    <td>Bole</td>
+    <td>
+	<select >
+    <option value="F" selected>Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>    <tr>
+    <td>Lazy</td>
+    <td>
+	<select >
+    <option value="F" selected>Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D">Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>     
+   <tr>
+    <td>LinWen</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D">Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+    <tr>
+    <td>妖妖</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>  
+  <tr>
+    <td>凌</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+  <tr>
+    <td>安国</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>  
+  <tr>
+    <td>许玉</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 9></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>   
+  <tr>
+    <td>田队</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 9></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+ <tr>
+    <td>群</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 9></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+<tr>
+    <td>CJ</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+  <tr>
+    <td>高队</td>
+    <td>
+	<select >
+    <option value="F" selected>Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D">Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+  <tr>
+    <td>振华</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+  <tr>
+    <td>Tony</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 7></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+  <tr>
+    <td>Jason</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 7></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+  <tr>
+    <td>老李</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+  <tr>
+    <td>Yingdong</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+  <tr>
+    <td>瘦马</td>
+    <td>
+	<select >
+    <option value="F" selected>Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+  <tr>
+    <td>Veron</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 7></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+    <tr>
+    <td>大秦</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+    <tr>
+    <td>孺子牛</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 9></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+    <tr>
+    <td>liuliu</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 7></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+    <tr>
+    <td>Ken</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" selected>Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 7></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+  <tr>
+    <td>Jim</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+  <tr>
+    <td>Bai</td>
+    <td>
+	<select >
+    <option value="F">Forward</option>
+    <option value="M" selected>Midfield</option>
+    <option value="D">Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr>
+  <tr>
+    <td>Frank</td>
+    <td>
+	<select >
+    <option value="F" selected>Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D" >Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 7></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+    <tr>
+    <td>韩冬</td>
+    <td>
+	<select >
+    <option value="F" selected>Forward</option>
+    <option value="M">Midfield</option>
+    <option value="D">Defender</option>    
+  </select>
+  </td>
+  <td><input type="text" value = 8></td>
+  <td><input type="checkbox" checked ></td>
+  <td></td>
+  </tr> 
+</table>
+<p><button onclick = "TeamGen()">Generate</button>
+</body>
+</html>
+
